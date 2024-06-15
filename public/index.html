@@ -95,16 +95,12 @@
                         <p className="text-gray-700 mt-8">The mind creates the beautiful, the heart creates the home, home sweet home</p>
                         <div className="relative mt-8 w-full">
                             <div className="flex space-x-4 overflow-hidden w-full">
-                                {images.map((src, index) => (
+                                {images.slice(currentIndex, currentIndex + 3).map((src, index) => (
                                     <img
                                         key={index}
                                         src={src}
                                         alt={`Image ${index + 1}`}
-                                        className={`w-36 h-36 object-cover transition-transform duration-500 ${index === currentIndex ? 'transform scale-110' : ''}`}
-                                        style={{
-                                            transform: `translateX(${(index - currentIndex) * 100}%)`,
-                                            transition: 'transform 0.5s ease-in-out'
-                                        }}
+                                        className="w-36 h-36 object-cover transition-transform duration-500 hover:scale-110"
                                     />
                                 ))}
                             </div>
