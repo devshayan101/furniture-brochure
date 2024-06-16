@@ -112,11 +112,15 @@
                                             key={index}
                                             src={src}
                                             alt={`Image ${index + 1}`}
-                                            className="w-36 h-36 object-cover transition-transform duration-500 hover:scale-110"
+                                            className="w-36 h-36 object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+                                            style={{
+                                                transform: `translateX(${(index - currentIndex) * 100}%)`,
+                                                transition: 'transform 0.5s ease-in-out'
+                                            }}
                                         />
                                     ))}
                                 </div>
-                                <button onClick={handleNext} className="p-2 bg-gray-300 rounded-full hover:bg-gray-400">
+                                <button onClick={handleNext} className="p-2 bg-gray-300 rounded-full hover:bg-gray-400 ml-4">
                                     <i className="fas fa-chevron-right"></i>
                                 </button>
                             </div>
