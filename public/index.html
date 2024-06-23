@@ -88,8 +88,9 @@
         }
         .responsive-container {
             padding: clamp(1rem, 5vw, 3rem);
-            max-width: 90%; /* Increased from 100% to 120% */
-            
+            max-width: 90%;
+            margin-bottom: 2rem; /* Reduced from 3rem (mb-12) to 2rem (mb-8) */
+        }
         .responsive-image {
             width: 100%;
             max-width: 500px;
@@ -100,6 +101,12 @@
             background-color: rgba(31, 41, 55, 0.3); /* Adjusted from bg-gray-800 to a semi-transparent version */
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-translucent {
+            background-color: rgba(44, 44, 44, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
         }
     </style>
 </head>
@@ -120,6 +127,7 @@
             const [isMobile, setIsMobile] = useState(false);
             const [isDrawerOpen, setIsDrawerOpen] = useState(false);
             const [activeIndex, setActiveIndex] = React.useState(0);
+            const [isScrolled, setIsScrolled] = useState(false);
 
             const images = [
                 "https://placehold.co/250x250",
@@ -161,6 +169,18 @@
                 return () => clearInterval(interval);
             }, []);
 
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 10);
+                };
+
+                window.addEventListener('scroll', handleScroll);
+
+                return () => {
+                    window.removeEventListener('scroll', handleScroll);
+                };
+            }, []);
+
             const scrollToBottom = () => {
                 window.scrollTo({
                     top: document.body.scrollHeight,
@@ -181,8 +201,8 @@
             };
 
             return (
-                <div className="relative min-h-screen flex flex-col justify-center items-center py-20">
-                    <header className="flex justify-between items-center p-2 fixed top-0 left-0 right-0 bg-gradient z-10">
+                <div className="relative min-h-screen flex flex-col justify-center items-center py-8"> {/* Changed py-12 to py-8 */}
+                    <header className={`flex justify-between items-center p-2 fixed top-0 left-0 right-0 z-10 transition-all duration-300 ${isScrolled ? 'nav-translucent' : 'bg-gradient'}`}>
                         <div className="responsive-logo">
                             <img src="img/logo.png" alt="Company Logo" className="h-full" />
                         </div>
@@ -201,7 +221,7 @@
                         )}
                     </header>
 
-                    <section className="responsive-container mx-auto mb-20">
+                    <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <main className="flex flex-col lg:flex-row items-center justify-between">
                                 <div className="flex-1 mb-8 lg:mb-0 lg:pr-8">
@@ -228,7 +248,7 @@
                         </div>
                     </section>
 
-                    <section className="responsive-container mx-auto mb-20">
+                    <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <div className="relative w-full">
                                 <div className="flex justify-between items-center">
@@ -257,7 +277,7 @@
                         </div>
                     </section>
 
-                    <section className="responsive-container mx-auto mb-20">
+                    <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <div className="flex flex-col lg:flex-row items-center justify-between">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
@@ -285,7 +305,7 @@
                         </div>
                     </section>
 
-                    <section className="responsive-container mx-auto mb-20">
+                    <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <div className="flex flex-col lg:flex-row items-center justify-between">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0">
