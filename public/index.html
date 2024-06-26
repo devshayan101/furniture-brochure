@@ -16,6 +16,7 @@
         }
         .responsive-logo {
             height: calc(2rem + 2vw);
+            margin-left: 1rem;
         }
         .responsive-text {
             font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
@@ -98,8 +99,8 @@
         }
 
         .glass-card {
-            background-color: rgba(31, 41, 55, 0.3); /* Adjusted from bg-gray-800 to a semi-transparent version */
-            backdrop-filter: blur(10px);
+            background-color: rgba(31, 41, 55, 0.3) !important; /* Adjusted from bg-gray-800 to a semi-transparent version */
+            backdrop-filter: blur(10px) !important;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -141,13 +142,6 @@
     <div id="root"></div>
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const servicesData = [
-            { name: "Home redesign", image: "https://placehold.co/100x100?text=Home+Redesign", link: "#" },
-            { name: "Interior detailing", image: "https://placehold.co/100x100?text=Interior+Detailing", link: "#" },
-            { name: "Furniture layout", image: "https://placehold.co/100x100?text=Furniture+Layout", link: "#" },
-            { name: "Exterior finish selections", image: "https://placehold.co/100x100?text=Exterior+Finish+Selections", link: "#" },
-            { name: "Color and paint selection", image: "https://placehold.co/100x100?text=Color+and+Paint+Selection", link: "#" }
-        ];
 
         const App = () => {
             const [currentIndex, setCurrentIndex] = useState(0);
@@ -155,28 +149,29 @@
             const [isDrawerOpen, setIsDrawerOpen] = useState(false);
             const [activeIndex, setActiveIndex] = React.useState(0);
             const [isScrolled, setIsScrolled] = useState(false);
+            const [isAtBottom, setIsAtBottom] = useState(false);
 
             const images = [
-                "https://placehold.co/250x250",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/250x250",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150",
-                "https://placehold.co/150x150"
+                "https://picsum.photos/250/250?random=90",
+                "https://picsum.photos/250/250?random=91",
+                "https://picsum.photos/250/250?random=92",
+                "https://picsum.photos/250/250?random=93",
+                "https://picsum.photos/250/250?random=94",
+                "https://picsum.photos/250/250?random=95",
+                "https://picsum.photos/250/250?random=96",
+                "https://picsum.photos/250/250?random=97",
+                "https://picsum.photos/250/250?random=98",
+                "https://picsum.photos/250/250?random=99",
+                "https://picsum.photos/250/250?random=901",
+                "https://picsum.photos/250/250?random=902"
             ];
 
             const services = [
-                { name: "Home redesign", image: "https://placehold.co/100x100?text=Home+Redesign" },
-                { name: "Interior detailing", image: "https://placehold.co/100x100?text=Interior+Detailing" },
-                { name: "Furniture layout", image: "https://placehold.co/100x100?text=Furniture+Layout" },
-                { name: "Exterior finish selections", image: "https://placehold.co/100x100?text=Exterior+Finish+Selections" },
-                { name: "Color and paint selection", image: "https://placehold.co/100x100?text=Color+and+Paint+Selection" }
+                { name: "Home redesign", image: "https://picsum.photos/300/400?random=1", link:"#" },
+                { name: "Interior detailing", image: "https://picsum.photos/300/400?random=2", link:"#" },
+                { name: "Furniture layout", image: "https://picsum.photos/300/400?random=3", link:"#" },
+                { name: "Exterior finish selections", image: "https://picsum.photos/300/400?random=4", link:"#" },
+                { name: "Color and paint selection", image: "https://picsum.photos/300/400?random=5", link:"#" }
             ];
 
             useEffect(() => {
@@ -207,6 +202,7 @@
             useEffect(() => {
                 const handleScroll = () => {
                     setIsScrolled(window.scrollY > 10);
+                    setIsAtBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100);
                 };
 
                 window.addEventListener('scroll', handleScroll);
@@ -219,6 +215,13 @@
             const scrollToBottom = () => {
                 window.scrollTo({
                     top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            };
+
+            const scrollToTop = () => {
+                window.scrollTo({
+                    top: 0,
                     behavior: 'smooth'
                 });
             };
@@ -259,14 +262,14 @@
                         </div>
                         {!isMobile && (
                             <nav className="flex-1 flex justify-center space-x-8">
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg transition-shadow px-4 py-2">About</a>
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg transition-shadow px-4 py-2">Product</a>
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg transition-shadow px-4 py-2">Project</a>
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg transition-shadow px-4 py-2">Services</a>
+                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">About</a>
+                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Product</a>
+                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Project</a>
+                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Services</a>
                             </nav>
                         )}
                         {isMobile && (
-                            <div className="text-white" onClick={toggleDrawer}>
+                            <div className="text-white mr-4" onClick={toggleDrawer}>
                                 <i className="fas fa-bars"></i>
                             </div>
                         )}
@@ -291,7 +294,7 @@
                                 </div>
                                 
                                 <div className="flex-shrink-0">
-                                    <img src="https://placehold.co/400x400" alt="Modern interior with orange chair and lamp" className="responsive-image object-cover"/>
+                                    <img src="https://picsum.photos/400/400?random=101" alt="Modern interior with orange chair and lamp" className="responsive-image object-cover"/>
                                 </div>
                                                           
                             
@@ -345,7 +348,7 @@
                                     </div>
                                 </div>
                                 <div className="lg:w-1/2 relative">
-                                    <img src="https://placehold.co/600x400" alt="A modern living room with grey and orange decor" className="rounded-lg shadow-lg w-full responsive-image" />
+                                    <img src="https://picsum.photos/600/400?random=88" alt="A modern living room with grey and orange decor" className="rounded-lg shadow-lg w-full responsive-image" />
                                     <div className="absolute inset-0 flex justify-center items-center">
                                         <div className="bg-white bg-opacity-50 rounded-full p-4">
                                             <i className="fas fa-play text-4xl text-white"></i>
@@ -360,7 +363,7 @@
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <div className="flex flex-col lg:flex-row items-center justify-between">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0">
-                                    <img src="https://placehold.co/500x500" alt="Modern chair in a room with an orange wall, a black floor lamp, and a small table with a plant" className="rounded-lg shadow-lg w-full responsive-image"/>
+                                    <img src="https://picsum.photos/500/500?random=991" alt="Modern chair in a room with an orange wall, a black floor lamp, and a small table with a plant" className="rounded-lg shadow-lg w-full responsive-image"/>
                                 </div>
                                 <div className="lg:w-1/2 lg:pl-8 flex flex-col justify-center">
                                     <p className="responsive-paragraph font-bold mb-8">
@@ -407,7 +410,7 @@
                                                 <img 
                                                     src={service.image} 
                                                     alt={`${service.name} image`} 
-                                                    className="list-image-responsive object-cover mr-4" // Increased from w-24 h-24 to w-28 h-28 (about 20% increase)
+                                                    className="list-image-responsive object-cover -my-4" // -my-4 removes padding effect from parent div with p-4
                                                 />
                                                 <div className="arrow-button active">
                                                     <i className="fas fa-arrow-right"></i>
@@ -425,12 +428,86 @@
                         </div>
                     </section>
 
+                    <section className="responsive-container mx-auto" style={{ width: '90vw', maxWidth: '90%' }}>
+                        <div className="glass-card rounded-lg shadow-lg p-8">
+                        
+                            <div className="max-w-7xl mx-auto p-8">
+                                <div className="text-center mb-8">
+                                    <h1 className="text-4xl font-light text-white-700">
+                                        Decorate <span className="font-bold">every inch of the house</span> to make it feel homey
+                                    </h1>
+                                    <p className="text-silver-500 mt-4">
+                                        Carve out a little piece of paradise with some of our top picks, the home of your dreams begins with the perfect palette for every room
+                                    </p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div className="glass-card transition-transform transform hover:-m-4">
+                                        <img src="https://picsum.photos/300/400?random=9" alt="A cozy living room with a large green plant and an orange chair" className="w-full h-auto"/>
+                                    </div>
+                                    <div className="glass-card transition-transform transform hover:-m-4">
+                                        <img src="https://picsum.photos/300/400?random=10" alt="A modern living room with orange sofas and abstract wall art" className="w-full h-auto"/>
+                                    </div>
+                                    <div className="relative glass-card transition-transform transform hover:-m-4">
+                                        <img src="https://picsum.photos/300/400?random=11" alt="A stylish room with an orange wall, white chair, and tall decorative sticks" className="w-full h-auto"/>
+                                        <button className="absolute bottom-4 left-4 glass-card border hover:py-3 hover:px-5 border-orange-500 text-orange-500 font-bold py-2 px-4 rounded-full flex items-center">
+                                            Learn More <i className="fas fa-arrow-right ml-2"></i>
+                                        </button>
+                                    </div>
+                                    <div className="glass-card transition-transform transform hover:-m-4">
+                                        <img src="https://picsum.photos/300/400?random=112" alt="A sophisticated room with an orange sofa and a blank picture frame on the wall" className="w-full h-auto"/>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </section>        
 
-
+                    <footer className="responsive-container mx-auto mt-12">
+                        <div className="glass-card rounded-lg shadow-lg p-8">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div className="space-y-4">
+                                    <img src="img/logo.png" alt="Company Logo" className="h-12" />
+                                    <p className="text-sm text-gray-400">Transform your space into a haven of comfort and style with our expert interior design services.</p>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-4 text-orange-500">Quick Links</h3>
+                                    <ul className="space-y-2">
+                                        <li><a href="#" className="text-gray-400 hover:text-orange-500">Home</a></li>
+                                        <li><a href="#" className="text-gray-400 hover:text-orange-500">About Us</a></li>
+                                        <li><a href="#" className="text-gray-400 hover:text-orange-500">Services</a></li>
+                                        <li><a href="#" className="text-gray-400 hover:text-orange-500">Projects</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-4 text-orange-500">Contact Us</h3>
+                                    <ul className="space-y-2">
+                                        <li className="flex items-center text-gray-400"><i className="fas fa-map-marker-alt mr-2 text-orange-500"></i> 123 Design Street, Creative City</li>
+                                        <li className="flex items-center text-gray-400"><i className="fas fa-phone mr-2 text-orange-500"></i> +1 (555) 123-4567</li>
+                                        <li className="flex items-center text-gray-400"><i className="fas fa-envelope mr-2 text-orange-500"></i> info@yourdesign.com</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-4 text-orange-500">Follow Us</h3>
+                                    <div className="flex space-x-4">
+                                        <a href="#" className="text-gray-400 hover:text-orange-500"><i className="fab fa-facebook-f"></i></a>
+                                        <a href="#" className="text-gray-400 hover:text-orange-500"><i className="fab fa-twitter"></i></a>
+                                        <a href="#" className="text-gray-400 hover:text-orange-500"><i className="fab fa-instagram"></i></a>
+                                        <a href="#" className="text-gray-400 hover:text-orange-500"><i className="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+                                <p>&copy; 2023 Your Design Company. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
 
                     <div className="fixed bottom-8 right-8 z-10">
-                        <button onClick={scrollToBottom} className="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600">
-                            <i className="fas fa-arrow-down"></i>
+                        <button 
+                            onClick={isAtBottom ? scrollToTop : scrollToBottom} 
+                            className="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition-all duration-300"
+                        >
+                            <i className={`fas fa-arrow-${isAtBottom ? 'up' : 'down'}`}></i>
                         </button>
                     </div>
                     {isMobile && isDrawerOpen && (
