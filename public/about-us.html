@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>About Us - Transform Your Space</title>
+		<script src="https://unpkg.com/react/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+			}
+			.bg-gradient {
+				background: linear-gradient(135deg, #2c2c2c, #b0b0b0);
+			}
+			.responsive-logo {
+				height: calc(2rem + 2vw);
+				margin-left: 1rem;
+			}
+			.responsive-text {
+				font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+			}
+			.responsive-heading {
+				font-size: clamp(2rem, 5vw + 1rem, 6rem);
+				line-height: 1.2;
+			}
+			.responsive-button {
+				font-size: clamp(0.8rem, 1vw + 0.5rem, 1.2rem);
+				padding: clamp(0.5rem, 1vw + 0.3rem, 1rem) clamp(1rem, 2vw + 0.5rem, 2rem);
+			}
+			.glass-card {
+				background-color: rgba(31, 41, 55, 0.3);
+				backdrop-filter: blur(10px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			.nav-translucent {
+				background-color: rgba(44, 44, 44, 0.8);
+				backdrop-filter: blur(10px);
+				transition: background-color 0.3s ease;
+			}
+		</style>
+	</head>
+	<body class="bg-gradient text-white">
+		<div id="root"></div>
+		<script type="text/babel">
+			const { useState, useEffect } = React;
+
+			const App = () => {
+				const [isMobile, setIsMobile] = useState(false);
+				const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+				const [isScrolled, setIsScrolled] = useState(false);
+
+				useEffect(() => {
+					const handleResize = () => {
+						setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+					};
+					handleResize();
+					window.addEventListener('resize', handleResize);
+					return () => {
+						window.removeEventListener('resize', handleResize);
+					};
+				}, []);
+
+				useEffect(() => {
+					const handleScroll = () => {
+						setIsScrolled(window.scrollY > 10);
+					};
+					window.addEventListener('scroll', handleScroll);
+					return () => {
+						window.removeEventListener('scroll', handleScroll);
+					};
+				}, []);
+
+				const toggleDrawer = () => {
+					setIsDrawerOpen(!isDrawerOpen);
+				};
+
+				return (
+					<div className="relative min-h-screen flex flex-col items-center py-8">
+						<header className={`flex justify-between items-center p-2 fixed top-0 left-0 right-0 z-10 transition-all duration-300 ${isScrolled ? 'nav-translucent' : 'bg-gradient'}`}>
+							<div className="responsive-logo">
+								<img src="img/logo.png" alt="Company Logo" className="h-full" />
+							</div>
+							{!isMobile && (
+								<nav className="flex-1 flex justify-center space-x-8">
+									<a href="index.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										Home
+									</a>
+									<a href="about-us.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										About
+									</a>
+									<a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										Services
+									</a>
+									<a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										Projects
+									</a>
+								</nav>
+							)}
+							{isMobile && (
+								<div className="text-white mr-4" onClick={toggleDrawer}>
+									<i className="fas fa-bars"></i>
+								</div>
+							)}
+						</header>
+
+						<main className="container mx-auto px-4 mt-20">
+							<section className="responsive-container mx-auto mb-12">
+								<div className="glass-card rounded-lg shadow-lg p-8">
+									<h1 className="responsive-heading font-light mb-8">About Us</h1>
+									<p className="responsive-text mb-6">
+										Welcome to Skrova! Here, innovation meets craftsmanship in the modular furniture world. We design & make a wide variety of furniture solutions that fit the ever-changing needs of modern living spaces, offices, and commercial areas.
+										<br />
+										<br />
+										At Skrova, we’re proud of our big collection of modular furniture. It includes many chairs, tables, & other items—all made with care & precision. Whether you need comfy office chairs, chic dining tables, or classy executive desks, our products mix function with style perfectly.
+										<br />
+										<br />
+										Here’s what you’ll find in our lineup:
+										<br />
+										<br />
+										Chairs: We’ve got everything from ergonomic office chairs to cozy lounge chairs. Each piece is made for comfort & built to last, giving you both support & good looks.
+										<br />
+										<br />
+										Tables: Our selection includes executive tables, office desks, computer tables, reception counters, & dining tables. They meet various home & workplace needs while looking fab.
+										<br />
+										<br />
+										Furniture: Check out our wooden and steel almirahs, LED panels, and sofa sets. These pieces can really lift your living space with quality craftsmanship and a modern touch.
+										<br />
+										<br />
+										Specialized Furniture: We also have cool options like library furniture, modular kitchen solutions, office cabinets, and even spiritual spots like mandirs. Each one is crafted to boost function & beauty in those special environments.
+										<br />
+										<br />
+										Browse our collection online or swing by our showroom for a closer look at the quality and skill that define Skrova. Let’s shape spaces together! Redefine comfort with furniture that’s all about elegance, function, & lasting quality.
+									</p>
+								</div>
+							</section>
+
+							<section className="responsive-container mx-auto mb-12">
+								<div className="glass-card rounded-lg shadow-lg p-8">
+									<h2 className="responsive-heading text-3xl font-light mb-6">Our Mission</h2>
+									<p className="responsive-text mb-6">
+										At the core of Skrova is our promise of quality & making customers happy. Our skilled craftsmen and designers mix old techniques with modern tech to create furniture that goes above and beyond what you expect. Need to furnish a new office? Or maybe you’re remodeling your home? Whatever it is, we’ve got the know-how to provide tailored solutions that fit just right.
+										<br />
+										<br />
+										But it’s not just about the furniture! We aim to build lasting bonds with our clients too—offering personal service, flexible options for customization, & dependable support every step of the way. Everything we make shows our commitment to craftsmanship. We envision enhancing spaces through smart design.
+										<br />
+									</p>
+								</div>
+							</section>
+
+							<section className="responsive-container mx-auto mb-12">
+								<div className="glass-card rounded-lg shadow-lg p-8">
+									<h2 className="responsive-heading text-3xl font-light mb-6">Our Team</h2>
+									<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+										<div className="text-center">
+											<img src="https://picsum.photos/200?random=1" alt="Team Member 1" className="rounded-full w-32 h-32 mx-auto mb-4" />
+											<h3 className="text-xl font-semibold mb-2">Jane Doe</h3>
+											<p className="text-gray-400">Lead Designer</p>
+										</div>
+										<div className="text-center">
+											<img src="https://picsum.photos/200?random=2" alt="Team Member 2" className="rounded-full w-32 h-32 mx-auto mb-4" />
+											<h3 className="text-xl font-semibold mb-2">John Smith</h3>
+											<p className="text-gray-400">Interior Architect</p>
+										</div>
+										<div className="text-center">
+											<img src="https://picsum.photos/200?random=3" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
+											<h3 className="text-xl font-semibold mb-2">Emily Brown</h3>
+											<p className="text-gray-400">Color Specialist</p>
+										</div>
+									</div>
+								</div>
+							</section>
+						</main>
+
+						<footer className="responsive-container mx-auto mt-12" style={{ width: '90vw', maxWidth: '90%' }}>
+							<div className="glass-card rounded-lg shadow-lg p-8">
+								<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+									<div className="space-y-4">
+										<img src="img/logo.png" alt="Company Logo" className="h-12" />
+										<p className="text-sm text-gray-400">Transform your space into a haven of comfort and style with our expert interior design services.</p>
+									</div>
+									<div>
+										<h3 className="text-lg font-semibold mb-4 text-orange-500">Quick Links</h3>
+										<ul className="space-y-2">
+											<li>
+												<a href="index.html" className="text-gray-400 hover:text-orange-500">
+													Home
+												</a>
+											</li>
+											<li>
+												<a href="about-us.html" className="text-gray-400 hover:text-orange-500">
+													About Us
+												</a>
+											</li>
+											<li>
+												<a href="#" className="text-gray-400 hover:text-orange-500">
+													Services
+												</a>
+											</li>
+											<li>
+												<a href="#" className="text-gray-400 hover:text-orange-500">
+													Projects
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div>
+										<h3 className="text-lg font-semibold mb-4 text-orange-500">Contact Us</h3>
+										<ul className="space-y-2">
+											<li className="flex items-center text-gray-400">
+												<i className="fas fa-map-marker-alt mr-2 text-orange-500"></i> 123 Design Street, Creative City
+											</li>
+											<li className="flex items-center text-gray-400">
+												<i className="fas fa-phone mr-2 text-orange-500"></i> +1 (555) 123-4567
+											</li>
+											<li className="flex items-center text-gray-400">
+												<i className="fas fa-envelope mr-2 text-orange-500"></i> info@yourdesign.com
+											</li>
+										</ul>
+									</div>
+									<div>
+										<h3 className="text-lg font-semibold mb-4 text-orange-500">Follow Us</h3>
+										<div className="flex space-x-4">
+											<a href="#" className="text-gray-400 hover:text-orange-500">
+												<i className="fab fa-facebook-f"></i>
+											</a>
+											<a href="#" className="text-gray-400 hover:text-orange-500">
+												<i className="fab fa-twitter"></i>
+											</a>
+											<a href="#" className="text-gray-400 hover:text-orange-500">
+												<i className="fab fa-instagram"></i>
+											</a>
+											<a href="#" className="text-gray-400 hover:text-orange-500">
+												<i className="fab fa-linkedin-in"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+									<p>&copy; 2023 Your Design Company. All rights reserved.</p>
+								</div>
+							</div>
+						</footer>
+
+						{isMobile && isDrawerOpen && (
+							<div className="fixed inset-0 bg-black bg-opacity-50 z-20" onClick={toggleDrawer}>
+								<div className="absolute right-0 top-0 bg-gray-800 w-64 h-full shadow-lg p-6">
+									<nav className="space-y-4">
+										<a href="index.html" className="text-white block hover:text-orange-500">
+											Home
+										</a>
+										<a href="about-us.html" className="text-white block hover:text-orange-500">
+											About
+										</a>
+										<a href="#" className="text-white block hover:text-orange-500">
+											Services
+										</a>
+										<a href="#" className="text-white block hover:text-orange-500">
+											Projects
+										</a>
+									</nav>
+								</div>
+							</div>
+						)}
+					</div>
+				);
+			};
+
+			ReactDOM.render(<App />, document.getElementById('root'));
+		</script>
+	</body>
+</html>
