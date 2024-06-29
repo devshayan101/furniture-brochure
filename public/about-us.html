@@ -35,6 +35,10 @@
 				background-color: rgba(31, 41, 55, 0.3);
 				backdrop-filter: blur(10px);
 				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 1rem;
+			}
+			.glass-card img {
+				border-radius: 1rem;
 			}
 			.nav-translucent {
 				background-color: rgba(44, 44, 44, 0.8);
@@ -52,6 +56,7 @@
 				const [isMobile, setIsMobile] = useState(false);
 				const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 				const [isScrolled, setIsScrolled] = useState(false);
+				const [modalCert, setModalCert] = useState(null);
 
 				useEffect(() => {
 					const handleResize = () => {
@@ -76,6 +81,14 @@
 
 				const toggleDrawer = () => {
 					setIsDrawerOpen(!isDrawerOpen);
+				};
+
+				const openModal = (cert) => {
+					setModalCert(cert);
+				};
+
+				const closeModal = () => {
+					setModalCert(null);
 				};
 
 				return (
@@ -155,21 +168,19 @@
 								<div className="glass-card rounded-lg shadow-lg p-8">
 									<h2 className="responsive-heading text-3xl font-light mb-6">Our Clients</h2>
 									<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=1" alt="Team Member 1" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">TCL</h3>
-											<p className="text-gray-400">Lead Designer</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=2" alt="Team Member 2" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">UPCL</h3>
-											<p className="text-gray-400">Interior Architect</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=3" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">UP Middle School</h3>
-											<p className="text-gray-400">Color Specialist</p>
-										</div>
+										{[
+											{ name: 'TCL', image: 'https://picsum.photos/400?random=1', role: 'Lead Designer' },
+											{ name: 'UPCL', image: 'https://picsum.photos/400?random=2', role: 'Interior Architect' },
+											{ name: 'UP Middle School', image: 'https://picsum.photos/400?random=3', role: 'Color Specialist' },
+										].map((client, index) => (
+											<div key={index} className="glass-card p-4 text-center transition-all duration-300 hover:-m-4 cursor-pointer">
+												<div className="w-32 h-32 mx-auto mb-4">
+													<img src={client.image} alt={client.name} className="w-full h-full object-cover transition-all duration-300 transform hover:scale-150" />
+												</div>
+												<h3 className="text-xl font-semibold mb-2">{client.name}</h3>
+												<p className="text-gray-400">{client.role}</p>
+											</div>
+										))}
 									</div>
 								</div>
 							</section>
@@ -178,36 +189,20 @@
 								<div className="glass-card rounded-lg shadow-lg p-8">
 									<h2 className="responsive-heading text-3xl font-light mb-6">Our Certifications</h2>
 									<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=1" alt="Team Member 1" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">QMS</h3>
-											<p className="text-gray-400">Lead Designer</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=21" alt="Team Member 2" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">BIFMA</h3>
-											<p className="text-gray-400">Interior Architect</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=32" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">Green guard</h3>
-											<p className="text-gray-400">Color Specialist</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=31" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">Green guard</h3>
-											<p className="text-gray-400">Health And Safety</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=34" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">Labour</h3>
-											<p className="text-gray-400">xyz</p>
-										</div>
-										<div className="text-center">
-											<img src="https://picsum.photos/200?random=35" alt="Team Member 3" className="rounded-full w-32 h-32 mx-auto mb-4" />
-											<h3 className="text-xl font-semibold mb-2">UDYAM</h3>
-											<p className="text-gray-400">xyz</p>
-										</div>
+										{[
+											{ name: 'QMS', image: 'https://picsum.photos/400?random=1', description: 'Quality Management System' },
+											{ name: 'BIFMA', image: 'https://picsum.photos/400?random=21', description: "Business and Institutional Furniture Manufacturer's Association" },
+											{ name: 'Green Guard', image: 'https://picsum.photos/400?random=32', description: 'Environmental Institute Certification' },
+											{ name: 'Health And Safety', image: 'https://picsum.photos/400?random=31', description: 'Occupational Health and Safety Management' },
+											{ name: 'Labour', image: 'https://picsum.photos/400?random=34', description: 'Labour Compliance Certification' },
+											{ name: 'UDYAM', image: 'https://picsum.photos/400?random=35', description: 'MSME Registration' },
+										].map((cert, index) => (
+											<div key={index} className="glass-card p-4 text-center cursor-pointer transition-all duration-300 hover:-m-4" onClick={() => openModal(cert)}>
+												<img src={cert.image} alt={cert.name} className="w-full h-32 object-cover rounded-lg mb-4 transition-all duration-300 hover:scale-110 hover:h-72 hover:z-200" />
+												<h3 className="text-xl font-semibold mb-2">{cert.name}</h3>
+												<p className="text-gray-400">{cert.description}</p>
+											</div>
+										))}
 									</div>
 								</div>
 							</section>
@@ -300,6 +295,20 @@
 											Projects
 										</a>
 									</nav>
+								</div>
+							</div>
+						)}
+
+						{/* Modal */}
+						{modalCert && (
+							<div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" onClick={closeModal}>
+								<div className="bg-white p-8 rounded-lg max-w-3xl max-h-full overflow-auto" onClick={(e) => e.stopPropagation()}>
+									<img src={modalCert.image} alt={modalCert.name} className="w-full h-auto mb-4" />
+									<h2 className="text-2xl font-bold mb-2">{modalCert.name}</h2>
+									<p className="text-gray-600 mb-4">{modalCert.description}</p>
+									<button onClick={closeModal} className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+										Close
+									</button>
 								</div>
 							</div>
 						)}
