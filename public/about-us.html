@@ -190,12 +190,12 @@
 									<h2 className="responsive-heading text-3xl font-light mb-6">Our Certifications</h2>
 									<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 										{[
-											{ name: 'QMS', image: 'https://picsum.photos/400?random=1', description: 'Quality Management System' },
-											{ name: 'BIFMA', image: 'https://picsum.photos/400?random=21', description: "Business and Institutional Furniture Manufacturer's Association" },
-											{ name: 'Green Guard', image: 'https://picsum.photos/400?random=32', description: 'Environmental Institute Certification' },
-											{ name: 'Health And Safety', image: 'https://picsum.photos/400?random=31', description: 'Occupational Health and Safety Management' },
-											{ name: 'Labour', image: 'https://picsum.photos/400?random=34', description: 'Labour Compliance Certification' },
-											{ name: 'UDYAM', image: 'https://picsum.photos/400?random=35', description: 'MSME Registration' },
+											{ name: 'QMS', image: 'https://picsum.photos/400/700?random=1', description: 'Quality Management System' },
+											{ name: 'BIFMA', image: 'https://picsum.photos/400/700?random=21', description: "Business and Institutional Furniture Manufacturer's Association" },
+											{ name: 'Green Guard', image: 'https://picsum.photos/400/700?random=32', description: 'Environmental Institute Certification' },
+											{ name: 'Health And Safety', image: 'https://picsum.photos/400/700?random=31', description: 'Occupational Health and Safety Management' },
+											{ name: 'Labour', image: 'https://picsum.photos/400/700?random=34', description: 'Labour Compliance Certification' },
+											{ name: 'UDYAM', image: 'https://picsum.photos/400/700?random=35', description: 'MSME Registration' },
 										].map((cert, index) => (
 											<div key={index} className="glass-card p-4 text-center cursor-pointer transition-all duration-300 hover:-m-4" onClick={() => openModal(cert)}>
 												<img src={cert.image} alt={cert.name} className="w-full h-32 object-cover rounded-lg mb-4 transition-all duration-300 hover:scale-110 hover:h-72 hover:z-200" />
@@ -301,12 +301,12 @@
 
 						{/* Modal */}
 						{modalCert && (
-							<div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" onClick={closeModal}>
-								<div className="bg-white p-8 rounded-lg max-w-3xl max-h-full overflow-auto" onClick={(e) => e.stopPropagation()}>
-									<img src={modalCert.image} alt={modalCert.name} className="w-full h-auto mb-4" />
+							<div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4" onClick={closeModal}>
+								<div className="glass-card p-8 w-full max-w-4xl max-h-[98vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+									<img src={modalCert.image} alt={modalCert.name} className="w-full h-auto mb-4 object-contain max-h-[90vh] overflow-auto" />
 									<h2 className="text-2xl font-bold mb-2">{modalCert.name}</h2>
-									<p className="text-gray-600 mb-4">{modalCert.description}</p>
-									<button onClick={closeModal} className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+									<p className="text-gray-400 mb-4 flex-grow ">{modalCert.description}</p>
+									<button onClick={closeModal} className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 self-end">
 										Close
 									</button>
 								</div>
