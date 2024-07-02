@@ -1,5 +1,7 @@
-const MobileDrawer = ({ isOpen, toggleDrawer }) =>
-	isOpen && (
+const MobileDrawer = ({ isOpen, toggleDrawer }) => {
+	if (!isOpen) return null;
+
+	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 z-20" onClick={toggleDrawer}>
 			<div className="absolute right-0 top-0 bg-gray-800 w-64 h-full shadow-lg p-6">
 				<nav className="space-y-4">
@@ -19,3 +21,6 @@ const MobileDrawer = ({ isOpen, toggleDrawer }) =>
 			</div>
 		</div>
 	);
+};
+
+module.exports = MobileDrawer;

@@ -115,7 +115,7 @@
         .arrow-button {
             width: 35px;
             height: 27px;
-            font-size: 12px;
+            font-size: 10px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -141,8 +141,11 @@
 <body class="bg-gradient text-white">
     <div id="root"></div>
     <script type="text/babel">
-        const { useState, useEffect } = React;
 
+        const { useState, useEffect } = React;
+        
+        // const { Header, Footer, MobileDrawer } = window.Components;
+        
         const App = () => {
             const [currentIndex, setCurrentIndex] = useState(0);
             const [isMobile, setIsMobile] = useState(false);
@@ -255,15 +258,19 @@
             };
 
             return (
-                <div className="relative min-h-screen flex flex-col justify-center items-center py-8"> {/* Changed py-12 to py-8 */}
-                    <header className={`flex justify-between items-center p-2 fixed top-0 left-0 right-0 z-10 transition-all duration-300 ${isScrolled ? 'nav-translucent' : 'bg-gradient'}`}>
+                <div className="relative min-h-screen flex flex-col justify-center items-center py-8 max-md:-mx-6 ">
+                    
+                    {/*<Header isMobile={isMobile} isScrolled={isScrolled} toggleDrawer={toggleDrawer} />*/}
+                    
+                     <header className={`flex justify-between items-center p-2 fixed top-0 left-0 right-0 z-10 transition-all duration-300 ${isScrolled ? 'nav-translucent' : 'bg-gradient'}`}>
                         <div className="responsive-logo">
                             <img src="img/logo.png" alt="Company Logo" className="h-full" />
                         </div>
                         {!isMobile && (
                             <nav className="flex-1 flex justify-center space-x-8">
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">About</a>
-                                <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Product</a>
+                                <a href="index.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Home</a>
+                                <a href="about-us.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">About</a>
+                                <a href="products.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Product</a>
                                 <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Project</a>
                                 <a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">Services</a>
                             </nav>
@@ -273,11 +280,11 @@
                                 <i className="fas fa-bars"></i>
                             </div>
                         )}
-                    </header>
+                    </header> 
 
-                    <section className="responsive-container mx-auto">
-                        <div className="glass-card rounded-lg shadow-lg p-8">
-                            <main className="flex flex-col lg:flex-row items-center justify-between">
+                    <section className="responsive-container mx-auto md:mt-4 max-md:mt-2">
+                        <div className="glass-card rounded-lg shadow-lg p-8 ">
+                            <main className="flex flex-col lg:flex-row items-center justify-between max-md:-mx-2">
                                 <div className="flex-1 mb-8 lg:mb-0 lg:pr-8">
                                     <h1 className="responsive-heading-large font-light leading-tight mb-8">Transform your space</h1>
                                     <div className="flex flex-wrap gap-4 mb-8">
@@ -303,27 +310,28 @@
                     </section>
 
                     <section className="responsive-container mx-auto">
-                        <div className="glass-card rounded-lg shadow-lg p-8">
+                        <div className="glass-card rounded-lg shadow-lg p-4 sm:p-8">
                             <div className="relative w-full">
                                 <div className="flex justify-between items-center">
-                                    <button onClick={handlePrev} className="p-2 bg-gray-700 rounded-full hover:bg-gray-600">
+                                    <button onClick={handlePrev} className="absolute left-0 z-10 p-2 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none transition-colors duration-300">
                                         <i className="fas fa-chevron-left text-white"></i>
                                     </button>
-                                    <div className="flex space-x-2 overflow-hidden w-full">
-                                        {images.slice(currentIndex, currentIndex + 5).map((src, index) => (
+                                    <div className="flex overflow-hidden sm:max-w-lg w-full">
+                                        {images.map((src, index) => (
                                             <img
                                                 key={index}
                                                 src={src}
                                                 alt={`Image ${index + 1}`}
-                                                className={`object-cover transition-transform duration-500 ease-in-out hover:scale-110 responsive-image`}
+                                                // w-full h-auto
+                                                className="object-cover transition-transform duration-500 ease-in-out"
                                                 style={{
-                                                    transform: `translateX(${(index - currentIndex) * 100}%)`,
-                                                    transition: 'transform 0.5s ease-in-out'
+                                                    minWidth: '100%',
+                                                    transform: `translateX(${-100 * (currentIndex % images.length)}%)`,
                                                 }}
                                             />
                                         ))}
                                     </div>
-                                    <button onClick={handleNext} className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 ml-4">
+                                    <button onClick={handleNext} className="absolute right-0 z-10 p-2 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none transition-colors duration-300">
                                         <i className="fas fa-chevron-right text-white"></i>
                                     </button>
                                 </div>
@@ -333,7 +341,7 @@
 
                     <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
-                            <div className="flex flex-col lg:flex-row items-center justify-between">
+                            <div className="flex flex-col lg:flex-row items-center justify-between max-md:-mx-2">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
                                     <h2 className="responsive-heading-medium font-light mb-4">
                                         Capture <span className="font-bold">the spirit of spring</span> in your home
@@ -360,8 +368,8 @@
                     </section>
 
                     <section className="responsive-container mx-auto">
-                        <div className="glass-card rounded-lg shadow-lg p-8">
-                            <div className="flex flex-col lg:flex-row items-center justify-between">
+                        <div className="glass-card rounded-lg shadow-lg p-8 ">
+                            <div className="flex flex-col lg:flex-row items-center justify-between max-md:-mx-2">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0">
                                     <img src="https://picsum.photos/500/500?random=991" alt="Modern chair in a room with an orange wall, a black floor lamp, and a small table with a plant" className="rounded-lg shadow-lg w-full responsive-image"/>
                                 </div>
@@ -391,16 +399,13 @@
                         </div>
                     </section>
 
-                    <div className="flex flex-col lg:flex-row items-center justify-between">
-                    </div>
-
-                    <section className="responsive-container mx-auto" style={{ width: '90vw', maxWidth: '90%' }}>
-                        <div className="glass-card rounded-lg shadow-lg p-8">
-                            <div className="flex flex-col space-y-4 p-4">
+                    <section className="responsive-container mx-auto" >
+                        <div className="glass-card rounded-lg shadow-lg p-8 w-[90vw]">
+                            <div className="flex flex-col space-y-4 ">
                                 {services.map((service, index) => (
                                     <div
                                         key={index}
-                                        className={`flex items-center justify-between p-4  ${activeIndex2 === index ? 'bg-black text-orange-500' : 'bg-gray-200 text-gray-500'}`}
+                                        className={`flex items-center justify-between p-4 -mx-3  ${activeIndex2 === index ? 'bg-black text-orange-500' : 'bg-gray-200 text-gray-500'}`}
                                         onMouseEnter={() => handleMouseEnter(index)}
                                         onMouseLeave={handleMouseLeave}
                                     >
@@ -428,41 +433,43 @@
                         </div>
                     </section>
 
-                    <section className="responsive-container mx-auto" style={{ width: '90vw', maxWidth: '90%' }}>
+                    <section className="responsive-container mx-auto">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                         
-                            <div className="max-w-7xl mx-auto p-8">
+                            <div className="max-w-7xl mx-auto max-md:-mx-2">
                                 <div className="text-center mb-8">
-                                    <h1 className="text-4xl font-light text-white-700">
+                                    <h1 className="responsive-heading-medium font-light text-white-700">
                                         Decorate <span className="font-bold">every inch of the house</span> to make it feel homey
                                     </h1>
-                                    <p className="text-silver-500 mt-4">
+                                    <p className="text-grey-400 mt-4 responsive-paragraph">
                                         Carve out a little piece of paradise with some of our top picks, the home of your dreams begins with the perfect palette for every room
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div className="glass-card transition-transform transform hover:-m-4">
-                                        <img src="https://picsum.photos/300/400?random=9" alt="A cozy living room with a large green plant and an orange chair" className="w-full h-auto"/>
+                                        <img src="https://picsum.photos/300/400?random=9" alt="A cozy living room with a large green plant and an orange chair" className=" responsive-image"/>
                                     </div>
                                     <div className="glass-card transition-transform transform hover:-m-4">
-                                        <img src="https://picsum.photos/300/400?random=10" alt="A modern living room with orange sofas and abstract wall art" className="w-full h-auto"/>
+                                        <img src="https://picsum.photos/300/400?random=10" alt="A modern living room with orange sofas and abstract wall art" className="responsive-image"/>
                                     </div>
                                     <div className="relative glass-card transition-transform transform hover:-m-4">
-                                        <img src="https://picsum.photos/300/400?random=11" alt="A stylish room with an orange wall, white chair, and tall decorative sticks" className="w-full h-auto"/>
+                                        <img src="https://picsum.photos/300/400?random=11" alt="A stylish room with an orange wall, white chair, and tall decorative sticks" className="responsive-image"/>
                                         <button className="absolute bottom-4 left-4 glass-card border hover:py-3 hover:px-5 border-orange-500 text-orange-500 font-bold py-2 px-4 rounded-full flex items-center">
                                             Learn More <i className="fas fa-arrow-right ml-2"></i>
                                         </button>
                                     </div>
                                     <div className="glass-card transition-transform transform hover:-m-4">
-                                        <img src="https://picsum.photos/300/400?random=112" alt="A sophisticated room with an orange sofa and a blank picture frame on the wall" className="w-full h-auto"/>
+                                        <img src="https://picsum.photos/300/400?random=112" alt="A sophisticated room with an orange sofa and a blank picture frame on the wall" className="responsive-image"/>
                                     </div>
                                 </div>
                             </div>
                         
                         </div>
                     </section>        
+                    {/* 
+                    <Footer /> */}
 
-                    <footer className="responsive-container mx-auto">
+                     <footer className="responsive-container mx-auto -mb-4">
                         <div className="glass-card rounded-lg shadow-lg p-8">
                             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                                 <div className="space-y-4">
@@ -500,33 +507,49 @@
                                 <p>&copy; 2023 Your Design Company. All rights reserved.</p>
                             </div>
                         </div>
-                    </footer>
+                    </footer> 
 
-                    <div className="fixed bottom-8 right-8 z-10">
+                    {/* <MobileDrawer isOpen={isMobile && isDrawerOpen} toggleDrawer={toggleDrawer} />*/}
+
+                    {/*Top-Bottom Scroll */}
+                     <div className="fixed bottom-8 right-8 z-10">
                         <button 
                             onClick={isAtBottom ? scrollToTop : scrollToBottom} 
-                            className="bg-orange-500 text-white p-4 rounded-full hover:bg-orange-600 transition-all duration-300"
+                            className="bg-orange-500 text-white md:p-4 max-md:p-2 rounded-full hover:bg-orange-600 transition-all duration-300"
                         >
                             <i className={`fas fa-arrow-${isAtBottom ? 'up' : 'down'}`}></i>
                         </button>
                     </div>
+
+                    {/* Mobile-mode Drawer */} 
+
                     {isMobile && isDrawerOpen && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 z-20" onClick={toggleDrawer}>
-                            <div className="absolute right-0 top-0 bg-gray-800 w-64 h-full shadow-lg p-6">
-                                <nav className="space-y-4">
-                                    <a href="#" className="text-white block hover:text-orange-500">About</a>
-                                    <a href="#" className="text-white block hover:text-orange-500">Product</a>
-                                    <a href="#" className="text-white block hover:text-orange-500">Project</a>
-                                    <a href="#" className="text-white block hover:text-orange-500">Services</a>
-                                </nav>
-                            </div>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-20" onClick={toggleDrawer}>
+                        <div className="absolute right-0 top-0 bg-gray-800 w-64 h-full shadow-lg p-6">
+                            <nav className="space-y-4">
+                                <a href="#" className="text-white block hover:text-orange-500">About</a>
+                                <a href="#" className="text-white block hover:text-orange-500">Product</a>
+                                <a href="#" className="text-white block hover:text-orange-500">Project</a>
+                                <a href="#" className="text-white block hover:text-orange-500">Services</a>
+                            </nav>
                         </div>
-                    )}
+                    </div> )}
+                    
                 </div>
             );
         };
 
         ReactDOM.render(<App />, document.getElementById('root'));
     </script>
+   <!--  <script src="components/Header.js"></script>
+    <script src="components/Footer.js"></script>
+    <script src="components/MobileDrawer.js"></script>
+    <script>
+        window.Components = {
+            Header: Header,
+            Footer: Footer,
+            MobileDrawer: MobileDrawer
+        };
+    </script> -->
 </body>
 </html>
