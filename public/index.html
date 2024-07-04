@@ -155,18 +155,17 @@
             const [isAtBottom, setIsAtBottom] = useState(false);
 
             const images = [
-                "https://picsum.photos/250/250?random=90",
-                "https://picsum.photos/250/250?random=91",
-                "https://picsum.photos/250/250?random=92",
-                "https://picsum.photos/250/250?random=93",
-                "https://picsum.photos/250/250?random=94",
-                "https://picsum.photos/250/250?random=95",
-                "https://picsum.photos/250/250?random=96",
-                "https://picsum.photos/250/250?random=97",
-                "https://picsum.photos/250/250?random=98",
-                "https://picsum.photos/250/250?random=99",
-                "https://picsum.photos/250/250?random=901",
-                "https://picsum.photos/250/250?random=902"
+                "img/modularKitchen01.jpeg",
+                "img/modularKitchen02.jpeg",
+                "img/pic01.jpg",
+                "img/pic02.jpg",
+                "img/pic03.jpg",
+                "img/executive4.webp",
+                "img/pic04.jpg",
+                "img/pic05.jpg",
+                "img/pic06.jpg",
+                "img/pic07.jpg",
+                "img/pic08.jpg"
             ];
 
             const services = [
@@ -297,11 +296,11 @@
                                             <i className="fas fa-arrow-right"></i>
                                         </button>
                                     </div>
-                                    <p className="responsive-paragraph text-gray-400">The mind creates the beautiful, the heart creates the home, home sweet home</p>
+                                    <p className="responsive-paragraph text-gray-400">Step into the Future of Modern Furnitures: Embrace Modern Elegance Today!</p>
                                 </div>
                                 
                                 <div className="flex-shrink-0">
-                                    <img src="https://picsum.photos/400/400?random=101" alt="Modern interior with orange chair and lamp" className="responsive-image object-cover"/>
+                                    <img src="img/executive4.webp" alt="Modern interior with orange chair and lamp" className="responsive-image object-cover"/>
                                 </div>
                                                           
                             
@@ -316,7 +315,7 @@
                                     <button onClick={handlePrev} className="absolute left-0 z-10 p-2 bg-gray-700 rounded-full hover:bg-gray-600 focus:outline-none transition-colors duration-300">
                                         <i className="fas fa-chevron-left text-white"></i>
                                     </button>
-                                    <div className="flex overflow-hidden sm:max-w-lg w-full">
+                                    <div className="flex overflow-hidden sm:max-w-lg">
                                         {images.map((src, index) => (
                                             <img
                                                 key={index}
@@ -344,7 +343,7 @@
                             <div className="flex flex-col lg:flex-row items-center justify-between max-md:-mx-2">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
                                     <h2 className="responsive-heading-medium font-light mb-4">
-                                        Capture <span className="font-bold">the spirit of spring</span> in your home
+                                        Capture <span className="font-bold">the spirit of Elegance</span> in your home
                                     </h2>
                                     <p className="responsive-paragraph text-gray-400 mb-8">
                                         We provide guidance and direction in your interior design project, inspire your space through art and design, create a space that reflects who you are
@@ -356,12 +355,8 @@
                                     </div>
                                 </div>
                                 <div className="lg:w-1/2 relative">
-                                    <img src="https://picsum.photos/600/400?random=88" alt="A modern living room with grey and orange decor" className="rounded-lg shadow-lg w-full responsive-image" />
-                                    <div className="absolute inset-0 flex justify-center items-center">
-                                        <div className="bg-white bg-opacity-50 rounded-full p-4">
-                                            <i className="fas fa-play text-4xl text-white"></i>
-                                        </div>
-                                    </div>
+                                    <img src="img/section3.jpg" alt="A modern living room with grey and orange decor" className="rounded-lg shadow-lg w-full " />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -371,7 +366,7 @@
                         <div className="glass-card rounded-lg shadow-lg p-8 ">
                             <div className="flex flex-col lg:flex-row items-center justify-between max-md:-mx-2">
                                 <div className="lg:w-1/2 mb-8 lg:mb-0">
-                                    <img src="https://picsum.photos/500/500?random=991" alt="Modern chair in a room with an orange wall, a black floor lamp, and a small table with a plant" className="rounded-lg shadow-lg w-full responsive-image"/>
+                                    <img src="https://picsum.photos/800/600?random=991" alt="Modern chair in a room with an orange wall, a black floor lamp, and a small table with a plant" className="rounded-lg shadow-lg"/>
                                 </div>
                                 <div className="lg:w-1/2 lg:pl-8 flex flex-col justify-center">
                                     <p className="responsive-paragraph font-bold mb-8">
@@ -399,8 +394,8 @@
                         </div>
                     </section>
 
-                    <section className="responsive-container mx-auto" >
-                        <div className="glass-card rounded-lg shadow-lg p-8 w-[90vw]">
+                    <section className="responsive-container mx-auto w-[90vw]" >
+                        <div className="glass-card rounded-lg shadow-lg p-8 ">
                             <div className="flex flex-col space-y-4 ">
                                 {services.map((service, index) => (
                                     <div
@@ -415,7 +410,7 @@
                                                 <img 
                                                     src={service.image} 
                                                     alt={`${service.name} image`} 
-                                                    className="list-image-responsive object-cover -my-4" // -my-4 removes padding effect from parent div with p-4
+                                                    className="list-image-responsive object-cover -my-4 hover:scale-150" // -my-4 removes padding effect from parent div with p-4
                                                 />
                                                 <div className="arrow-button active">
                                                     <i className="fas fa-arrow-right"></i>
