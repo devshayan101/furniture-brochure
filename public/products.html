@@ -48,14 +48,14 @@
 		<script type="text/babel">
 			const { useState, useEffect } = React;
 
-			const ProductCategory = ({ title, products }) => (
+			const ProductCategory = ({ title, products, position }) => (
 				<section className="responsive-container mx-auto mb-12">
 					<div className="glass-card rounded-lg shadow-lg p-8">
 						<h2 className="responsive-heading text-3xl font-light mb-6">{title}</h2>
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 							{products.map((product, index) => (
 								<div key={index} className="text-center">
-									<img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-lg mb-4 transition-all duration-300 hover:scale-110 hover:h-72 hover:z-200" />
+									<img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-lg mb-4 transition-all duration-300 hover:scale-110 hover:h-72 hover:z-200" style={{ objectPosition: `${product.position || '0% 50%'}` }} />
 									<h3 className="text-xl font-semibold mb-2">{product.name}</h3>
 									<p className="text-gray-400">{product.description}</p>
 								</div>
@@ -99,10 +99,10 @@
 					{
 						title: 'Modern Chairs',
 						products: [
-							{ name: 'Office Chair', image: 'img/officeChair.jpg', description: 'Ergonomic seating for productive workspaces' },
-							{ name: 'Wooden Chair', image: 'img/woodenChair01.jpg', description: 'Rustic charm meets modern comfort' },
+							{ name: 'Office Chair', image: 'img/officeChair.jpg', description: 'Ergonomic seating for productive workspaces', position: '50% 20%' },
+							{ name: 'Wooden Chair', image: 'img/woodenChair01.jpg', description: 'Rustic charm meets modern comfort', position: '50% 40%' },
 							{ name: 'Boss Chair', image: 'img/bossChair.jpg', description: 'Luxurious seating for executive offices' },
-							{ name: 'Customer Chair', image: 'img/customerChair.jpg', description: 'Stylish and comfortable seating for clients' },
+							{ name: 'Customer Chair', image: 'img/customerChair.jpg', description: 'Stylish and comfortable seating for clients, ', position: '50% 38%' },
 							{ name: 'Plastic Chair', image: 'img/plasticChair.jpg', description: 'Durable and versatile seating solution' },
 							{ name: 'Waiting Chair', image: 'img/waitingChair01.jpg', description: 'Comfortable seating for reception areas' },
 						],
@@ -126,7 +126,7 @@
 						products: [
 							{ name: 'Library Furniture', image: 'img/pic08.jpg', description: 'Customizable shelving for book lovers' },
 							{ name: 'Modular Kitchen', image: 'img/section4.jpg', description: 'Flexible and efficient kitchen designs' },
-							{ name: 'Mandir', image: 'img/mandir2.png', description: 'Customizable sacred space for your home' },
+							{ name: 'Mandir', image: 'img/mandir2.jpg', description: 'Customizable sacred space for your home' },
 							{ name: 'Office Cabinet', image: 'img/officeCabinet.jpg', description: 'Adaptable storage for evolving workspaces' },
 						],
 					},
