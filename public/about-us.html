@@ -110,18 +110,18 @@
 										Home
 									</a>
 									<a href="about-us.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
-										About
+										About Us
 									</a>
-									<a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
-										Services
+									<a href="products.html" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										Our Products
 									</a>
-									<a href="#" className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
-										Projects
+									<a href="download/catalogue.pdf" download className="text-white hover:text-orange-500 hover:shadow-lg hover:px-3 hover:py-1 hover:glass-card transition-shadow px-4 py-2">
+										Catalogue
 									</a>
 								</nav>
 							)}
 							{isMobile && (
-								<div className="text-white mr-4" onClick={toggleDrawer}>
+								<div aria-expanded={isDrawerOpen} className="text-white mr-4" onClick={toggleDrawer}>
 									<i className="fas fa-bars"></i>
 								</div>
 							)}
