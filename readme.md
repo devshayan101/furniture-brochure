@@ -2,6 +2,8 @@
 
 This project is a responsive website for a modern furniture company, showcasing their products and services.
 
+Project Live link : [https://skrova.in].
+
 ## Tech Stack
 
 - **Frontend:**
@@ -21,7 +23,7 @@ This project is a responsive website for a modern furniture company, showcasing 
 
 ## Features
 
-1. **Responsive Design:** 
+1. **Responsive Design:**
    - Adapts to various screen sizes (mobile, tablet, desktop)
    - Custom responsive classes for text, images, and containers
 
@@ -73,4 +75,4 @@ This project is a responsive website for a modern furniture company, showcasing 
 14. **Contact Information:**
     - Easily accessible contact details in the footer
 
-This modern, feature-rich website provides an engaging user experience while showcasing the company's furniture products and services effectively.
+This modern, feature-rich website provides an engaging user experience while showcasing the company's furniture products and services effectively
